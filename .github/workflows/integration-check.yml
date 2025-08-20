@@ -1,0 +1,19 @@
+name: Integration build
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths-ignore:
+      - ".github/workflows/**"  
+jobs:
+  call-integration-check-workflow:
+    uses: amartcs/Test/.github/workflows/integration-check.yml@main
+    secrets:
+      ACTION_GITHUB_ACCESS_TOKEN: ${{ secrets.ACTION_GITHUB_ACCESS_TOKEN }}
+      AZURE_TEAMS_NOTIFIER_URL: ${{ secrets.AZURE_TEAMS_NOTIFIER_URL }}
+      CICD_SONAR_LOGIN: ${{ secrets.CICD_SONAR_LOGIN }}
+      CICD_BLACKDUCK_API_TOKEN: ${{ secrets.CICD_BLACKDUCK_API_TOKEN}}
+      HPFORTIFY_CTRL_TOKEN: ${{ secrets.HPFORTIFY_CTRL_TOKEN }}
+      HPFORTIFY_CI_TOKEN: ${{ secrets.HPFORTIFY_CI_TOKEN }}
+      HPFORTIFY_DOWNLOAD_TOKEN: ${{ secrets.HPFORTIFY_DOWNLOAD_TOKEN }}
+      HPFORTIFY_UPLOAD_TOKEN: ${{ secrets.HPFORTIFY_UPLOAD_TOKEN }}
